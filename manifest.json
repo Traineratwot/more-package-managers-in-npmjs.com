@@ -1,0 +1,22 @@
+{
+
+  "manifest_version": 2,
+  "name": "Yarn in npmjs.com",
+  "version": "1.0",
+
+  "description": "Adds yarn command next to npm command",
+
+	"permissions": ["*://www.npmjs.com/package/*"],
+  
+	"icons": {
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://www.npmjs.com/package/*"],
+      "js": ["yarnInNpmCom.js"],
+			"run_at": "document_end"
+    }
+  ]
+
+}
