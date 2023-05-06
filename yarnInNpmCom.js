@@ -1,27 +1,44 @@
+const findCopyNode = () =>
+  [...document.getElementsByTagName("code")].find(
+    (e) => e.title == "Copy Command to Clipboard"
+  ).parentNode;
+
+const createSiblingNode = (originalNode) =>
+  originalNode.parentNode
+    .insertBefore(originalNode.cloneNode(true), originalNode)
+    .getElementsByTagName("span")[0];
+
+const addCopyOnClick = (node) => {
+  const { innerText } = node;
+
+  const eventHandler = () => {
+    navigator.clipboard.writeText(innerText);
+    node.innerHTML = "Copied! ✅";
+    setTimeout(() => {
+      node.innerText = innerText;
+    }, 1000);
+  };
+
+  node.addEventListener("click", eventHandler);
+};
+
+const createYarnNode = (originalNode) => {
+  const newNode = createSiblingNode(originalNode);
+
+  if (newNode) {
+    newNode.innerText = newNode.innerText
+      .replace("npm", "yarn")
+      .replace(" i ", " add ")
+      .replace("install", "add")
+      .replace("--save-dev", "--dev");
+
+    addCopyOnClick(newNode);
+  }
+};
+
 setTimeout(() => {
-	const node = [...document.getElementsByTagName("code")].find(
-		(e) => e.title == "Copy Command to Clipboard"
-	).parentNode;
-	if (node) {
-		const newNode = node.parentNode
-			.insertBefore(node.cloneNode(true), node)
-			.getElementsByTagName("span")[0];
-
-		if (newNode) {
-			newNode.innerText = newNode.innerText
-				.replace("npm", "yarn")
-				.replace(" i ", " add ")
-				.replace("install", "add")
-				.replace("--save-dev", "--dev");
-			const innerText = newNode.innerText;
-
-			newNode.addEventListener('click', (e) => {
-				navigator.clipboard.writeText(innerText)
-				newNode.innerHTML = "Copied! ✅";
-				setTimeout(() => {
-					newNode.innerText = innerText;
-				}, 1000);
-			});
-		}
-	}
+  const npmNode = findCopyNode();
+  if (npmNode) {
+    createYarnNode(npmNode);
+  }
 }, 100);
