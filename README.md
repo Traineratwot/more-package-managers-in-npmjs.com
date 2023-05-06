@@ -1,12 +1,18 @@
-# Copy yarn in [npmjs.com](https://www.npmjs.com/)
-Browser extension that adds yarn command next to the npm command on npmjs.com.  
-You can copy it by clicking on it.
+# More package managers in [npmjs.com](https://www.npmjs.com/)
+Browser extension that adds yarn and pnpm commands next to the npm command on npmjs.com.  
 
-![obraz](https://user-images.githubusercontent.com/32539363/125769761-4d398616-b47d-4aba-bd53-07f9b8967260.png)
+![image](https://user-images.githubusercontent.com/32539363/236645910-e63fd623-99a4-4c13-8cfa-58faf70910c2.png)
+
+## Features
+- yarn add command
+- pnpm add command
+- copy on click
+- dev dependency switch
+- autodetect `@types` packages
 
 ## Instalation
 ### Firefox:  
-You can install it from the [firefox addon page](https://addons.mozilla.org/pl/firefox/addon/copy-yarn-in-npmjs-com/).  
+You can install it from the [firefox addon page](https://addons.mozilla.org/pl/firefox/addon/more-package-manager-npmjs-com).  
   
 ### Chrome:  
-I don't have a chrome developer account so you'll need to install this extension [manually](https://developer.chrome.com/docs/extensions/mv3/getstarted/).
+[In review](https://chrome.google.com/webstore/detail/odokljcohfgfdgebficpgccbkoaglnkh)
