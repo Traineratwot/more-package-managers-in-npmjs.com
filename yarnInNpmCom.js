@@ -62,6 +62,8 @@ const replaceNpmNode = (originalNode) => {
 setTimeout(() => {
   const npmNode = findCopyNode();
   if (npmNode) {
+    npmNode.style.margin = "6px 0";
+
     createYarnNode(npmNode);
     createPnpmNode(npmNode);
     replaceNpmNode(npmNode);
