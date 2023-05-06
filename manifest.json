@@ -1,10 +1,10 @@
 {
 
   "manifest_version": 2,
-  "name": "Yarn in npmjs.com",
-  "version": "1.0",
+  "name": "More package managers in npmjs.com",
+  "version": "1.1",
 
-  "description": "Adds yarn command next to npm command",
+  "description": "Adds yarn and pnpm commands next to the npm command; adds dev dependency switch",
 
 	"permissions": ["*://www.npmjs.com/package/*"],
   
@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "matches": ["*://www.npmjs.com/package/*"],
-      "js": ["yarnInNpmCom.js"],
+      "js": ["improveNpm.js"],
 			"run_at": "document_end"
     }
   ]
