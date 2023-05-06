@@ -50,10 +50,20 @@ const createPnpmNode = (originalNode) => {
   }
 };
 
+const replaceNpmNode = (originalNode) => {
+  const newNode = createSiblingNode(originalNode);
+
+  if (newNode) {
+    addCopyOnClick(newNode);
+    originalNode.remove();
+  }
+};
+
 setTimeout(() => {
   const npmNode = findCopyNode();
   if (npmNode) {
     createYarnNode(npmNode);
     createPnpmNode(npmNode);
+    replaceNpmNode(npmNode);
   }
 }, 100);
