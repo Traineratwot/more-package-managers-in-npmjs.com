@@ -36,9 +36,24 @@ const createYarnNode = (originalNode) => {
   }
 };
 
+const createPnpmNode = (originalNode) => {
+  const newNode = createSiblingNode(originalNode);
+
+  if (newNode) {
+    newNode.innerText = newNode.innerText
+      .replace("npm", "pnpm")
+      .replace(" i ", " add ")
+      .replace("install", "install")
+      .replace("--save-dev", "-D");
+
+    addCopyOnClick(newNode);
+  }
+};
+
 setTimeout(() => {
   const npmNode = findCopyNode();
   if (npmNode) {
     createYarnNode(npmNode);
+    createPnpmNode(npmNode);
   }
 }, 100);
