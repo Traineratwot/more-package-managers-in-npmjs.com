@@ -11,8 +11,6 @@ Browser extension that adds yarn and pnpm commands next to the npm command on np
 - autodetect `@types` packages
 
 ## Instalation
-### Firefox:  
-You can install it from the [firefox addon page](https://addons.mozilla.org/pl/firefox/addon/more-package-manager-npmjs-com).  
+### [Firefox](https://addons.mozilla.org/pl/firefox/addon/more-package-manager-npmjs-com) 
   
-### Chrome:  
-[In review](https://chrome.google.com/webstore/detail/odokljcohfgfdgebficpgccbkoaglnkh)
+### [Chrome](https://chrome.google.com/webstore/detail/odokljcohfgfdgebficpgccbkoaglnkh) 
