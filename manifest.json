@@ -1,14 +1,13 @@
 {
-
   "manifest_version": 2,
   "name": "More package managers in npmjs.com",
   "version": "1.1",
 
   "description": "Adds yarn and pnpm commands next to the npm command; adds dev dependency switch",
 
-	"permissions": ["*://www.npmjs.com/package/*"],
-  
-	"icons": {
+  "permissions": ["*://www.npmjs.com/package/*"],
+
+  "icons": {
     "48": "icon48.png",
     "128": "icon128.png"
   },
@@ -17,8 +16,7 @@
     {
       "matches": ["*://www.npmjs.com/package/*"],
       "js": ["improveNpm.js"],
-			"run_at": "document_end"
+      "run_at": "document_end"
     }
   ]
-
 }

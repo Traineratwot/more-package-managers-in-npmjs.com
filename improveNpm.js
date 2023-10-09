@@ -32,7 +32,7 @@ const createYarnNode = (originalNode) => {
   const newNode = createSiblingNode(originalNode);
   if (!newNode) return;
 
-  const textNode = newNode.getElementsByTagName("span")[0];
+  const textNode = newNode.getElementsByTagName("button")[0];
   if (!textNode) return;
 
   textNode.innerText = textNode.innerText
@@ -48,7 +48,7 @@ const createPnpmNode = (originalNode) => {
   const newNode = createSiblingNode(originalNode);
   if (!newNode) return;
 
-  const textNode = newNode.getElementsByTagName("span")[0];
+  const textNode = newNode.getElementsByTagName("button")[0];
   if (!textNode) return;
 
   textNode.innerText = textNode.innerText
@@ -64,7 +64,7 @@ const replaceNpmNode = (originalNode) => {
   const newNode = createSiblingNode(originalNode);
   if (!newNode) return;
 
-  const textNode = newNode.getElementsByTagName("span")[0];
+  const textNode = newNode.getElementsByTagName("button")[0];
   if (!textNode) return;
 
   textNode.innerText = textNode.innerText.replace(
@@ -82,7 +82,7 @@ const recreateNode = (originalNode) => {
   const newNode = originalNode.cloneNode(true);
   if (!newNode) return;
 
-  const textNode = newNode.getElementsByTagName("span")[0];
+  const textNode = newNode.getElementsByTagName("button")[0];
   if (!textNode) return;
 
   if (isDevDependency) {
@@ -141,6 +141,7 @@ setTimeout(() => {
       replaceNpmNode(npmNode),
     ];
 
+    console.log(buttonNodes);
     addDevelopmentPackageCheckbox(buttonNodes[0]);
   }
 }, 100);
