@@ -4,9 +4,8 @@ let isDevDependency = isTypesPackage();
 let buttonNodes = [];
 
 const findNpmNode = () =>
-  [...document.getElementsByTagName("code")].find(
-    (e) => e.title == "Copy Command to Clipboard"
-  ).parentNode;
+  document.querySelector('button[aria-label="Copy install command line"]')
+    ?.parentNode.parentNode;
 
 const createSiblingNode = (originalNode) =>
   originalNode.parentNode.insertBefore(
@@ -15,31 +14,33 @@ const createSiblingNode = (originalNode) =>
   );
 
 const addCopyOnClick = (node) => {
-  const { innerText } = node;
+  const copyButton = node.querySelector("button");
+  const codeNode = node.querySelector("code");
+  const { innerText } = codeNode;
 
   const eventHandler = () => {
     navigator.clipboard.writeText(innerText);
-    node.innerHTML = "Copied! ✅";
+    codeNode.innerHTML = "Copied! ✅";
     setTimeout(() => {
-      node.innerText = innerText;
+      codeNode.innerText = innerText;
     }, 1000);
   };
 
-  node.addEventListener("click", eventHandler);
+  copyButton.addEventListener("click", eventHandler);
 };
 
 const createYarnNode = (originalNode) => {
   const newNode = createSiblingNode(originalNode);
   if (!newNode) return;
 
-  const textNode = newNode.getElementsByTagName("button")[0];
+  const textNode = newNode.getElementsByTagName("code")[0];
   if (!textNode) return;
 
   textNode.innerText = textNode.innerText
     .replace("npm", "yarn")
     .replace(" i ", isDevDependency ? " add --dev " : " add ");
 
-  addCopyOnClick(textNode);
+  addCopyOnClick(newNode);
 
   return newNode;
 };
@@ -48,14 +49,14 @@ const createPnpmNode = (originalNode) => {
   const newNode = createSiblingNode(originalNode);
   if (!newNode) return;
 
-  const textNode = newNode.getElementsByTagName("button")[0];
+  const textNode = newNode.getElementsByTagName("code")[0];
   if (!textNode) return;
 
   textNode.innerText = textNode.innerText
     .replace("npm", "pnpm")
     .replace(" i ", isDevDependency ? " add -D " : " add ");
 
-  addCopyOnClick(textNode);
+  addCopyOnClick(newNode);
 
   return newNode;
 };
@@ -64,7 +65,7 @@ const replaceNpmNode = (originalNode) => {
   const newNode = createSiblingNode(originalNode);
   if (!newNode) return;
 
-  const textNode = newNode.getElementsByTagName("button")[0];
+  const textNode = newNode.getElementsByTagName("code")[0];
   if (!textNode) return;
 
   textNode.innerText = textNode.innerText.replace(
@@ -72,7 +73,7 @@ const replaceNpmNode = (originalNode) => {
     isDevDependency ? " i --save-dev " : " i "
   );
 
-  addCopyOnClick(textNode);
+  addCopyOnClick(newNode);
   originalNode.remove();
 
   return newNode;
@@ -82,7 +83,7 @@ const recreateNode = (originalNode) => {
   const newNode = originalNode.cloneNode(true);
   if (!newNode) return;
 
-  const textNode = newNode.getElementsByTagName("button")[0];
+  const textNode = newNode.getElementsByTagName("code")[0];
   if (!textNode) return;
 
   if (isDevDependency) {
@@ -97,7 +98,7 @@ const recreateNode = (originalNode) => {
       .replaceAll(" -D", "");
   }
 
-  addCopyOnClick(textNode);
+  addCopyOnClick(newNode);
   originalNode.parentNode.replaceChild(newNode, originalNode);
   return newNode;
 };
@@ -141,7 +142,6 @@ setTimeout(() => {
       replaceNpmNode(npmNode),
     ];
 
-    console.log(buttonNodes);
     addDevelopmentPackageCheckbox(buttonNodes[0]);
   }
 }, 100);
